@@ -1850,10 +1850,11 @@ export function DomainsPage() {
                 const pageTrafficStats = sortedDomains.reduce(
                   (acc, domain) => {
                     if (domain.palladiumCampaignId) {
-                      acc.totalTarget += domain.targetTraffic || 0;
-                      acc.totalTargetUnique += domain.targetUniqueTraffic || 0;
-                      acc.totalBotTotal += domain.botTotalTraffic || 0;
-                      acc.totalBot += domain.botTraffic || 0;
+                      const cs = campaignStats[domain.palladiumCampaignId];
+                      acc.totalTarget += domain.targetTraffic || Number(cs?.targetTraffic) || 0;
+                      acc.totalTargetUnique += domain.targetUniqueTraffic || Number(cs?.targetUniqueTraffic) || 0;
+                      acc.totalBotTotal += domain.botTotalTraffic || Number(cs?.botTotalTraffic) || 0;
+                      acc.totalBot += domain.botTraffic || Number(cs?.botTraffic) || 0;
                     }
                     return acc;
                   },
