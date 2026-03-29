@@ -1,0 +1,20 @@
+{
+  "name": "server-panel-demo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Server Control Panel - Demo with mock data",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -n \"api,web\" -c \"bgBlue.bold,bgMagenta.bold\" --kill-others \"npm:dev:api\" \"npm:dev:web\"",
+    "dev:api": "npm run dev --workspace=apps/api",
+    "dev:web": "npm run dev --workspace=apps/web",
+    "build": "npm run build --workspaces"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "typescript": "^5.3.3"
+  }
+}
